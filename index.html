@@ -98,6 +98,21 @@
         <br><br>
         Email: 64034018@qq.com
     </p>
+     <h3>Demo Form (Track msclkid)</h3>
+
+    <form>
+        <label>Name:</label><br>
+        <input type="text" name="name"><br><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email"><br><br>
+        <input type="hidden" id="msclkid_field" name="msclkid">
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <p id="debug"></p>
+
 </section>
 
 <section id="privacy">
@@ -138,6 +153,22 @@
         <a href="#contact">Contact</a>
     </p>
 </footer>
+<script>
+    function getMsclkid() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get("msclkid");
+    }
 
+    const msclkid = getMsclkid();
+
+    if (msclkid) {
+        document.getElementById("msclkid_field").value = msclkid;
+        document.getElementById("debug").innerText = 
+            "Captured msclkid: " + msclkid;
+    } else {
+        document.getElementById("debug").innerText = 
+            "No msclkid found in URL";
+    }
+</script>
 </body>
 </html>
