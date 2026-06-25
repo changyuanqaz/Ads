@@ -108,7 +108,7 @@
         <input type="email" name="email"><br><br>
         <input type="text" id="msclkid_field" name="msclkid">
 
-        <button type="submit">Submit</button>
+        <button type="submit" onclick="trackConversion()">Submit</button>
     </form>
 
     <p id="debug"></p>
@@ -159,6 +159,8 @@
         return params.get("msclkid");
     }
 
+    
+    
     const msclkid = getMsclkid();
 
     if (msclkid) {
@@ -169,6 +171,35 @@
         document.getElementById("debug").innerText = 
             "No msclkid found in URL";
     }
+
+    <script>
+    // ✅ 获取 msclkid
+    function getMsclkid() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get("msclkid");
+    }
+
+    const msclkid = getMsclkid();
+
+    if (msclkid) {
+        document.getElementById("msclkid_field").value = msclkid;
+        document.getElementById("debug").innerText = 
+            "Captured msclkid: " + msclkid;
+    } else {
+        document.getElementById("debug").innerText = 
+            "No msclkid found in URL";
+    }
+
+   
+    function trackConversion() {
+        window.uetq = window.uetq || [];
+
+        window.uetq.push('event', 'button_click');
+
+        console.log("✅ Conversion triggered");
+    }
+</script>
+    
 </script>
 </body>
 </html>
