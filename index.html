@@ -66,6 +66,7 @@
 
   <h1>Welcome to My Test Page</h1>
   <p>Click button to simulate conversion</p>
+  <p id="msclkid-display"></p>
 
   <!-- ✅ 转化按钮 -->
   <button onclick="trackConversion()">Submit</button>
@@ -74,6 +75,7 @@
   <script>
     function trackConversion() {
       const msclkid = localStorage.getItem("msclkid");
+      document.getElementById("msclkid-display").innerText = "msclkid = " + msclkid;
 
       window.uetq = window.uetq || [];
       window.uetq.push('event', 'button_click', {
